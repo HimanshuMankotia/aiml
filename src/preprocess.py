@@ -1,13 +1,19 @@
+import nltk
 import re
-import spacy
 
-nlp = spacy.load("en_core_web_sm")
+nltk.download('punkt')
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+stop_words = set(stopwords.words('english'))
 
 def preprocess_text(text):
     text = text.lower()
     text = re.sub(r'[^a-zA-Z\s]', '', text)
-    
-    doc = nlp(text)
-    tokens = [token.lemma_ for token in doc if not token.is_stop]
-    
-    return " ".join(tokens)
+    tokens = word_tokenize(text)
+
+    filtered_tokens = [word for word in tokens if word not in stop_words]
+
+    return " ".join(filtered_tokens)
