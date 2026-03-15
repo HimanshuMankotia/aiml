@@ -1,8 +1,3 @@
-import spacy
-from spacy.matcher import PhraseMatcher
-
-nlp = spacy.load("en_core_web_md")
-
 skills_list = [
     "python",
     "machine learning",
@@ -20,14 +15,13 @@ skills_list = [
 ]
 
 def extract_skills(text):
-    doc = nlp(text.lower())
     
-    matcher = PhraseMatcher(nlp.vocab)
-    patterns = [nlp(skill) for skill in skills_list]
-    matcher.add("SKILLS", patterns)
-    
-    matches = matcher(doc)
-    
-    found_skills = list(set([doc[start:end].text for match_id, start, end in matches]))
-    
-    return found_skills
+    text = text.lower()
+
+    found_skills = []
+
+    for skill in skills_list:
+        if skill in text:
+            found_skills.append(skill)
+
+    return list(set(found_skills))
