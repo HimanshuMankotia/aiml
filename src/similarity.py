@@ -25,6 +25,7 @@ def skill_match_score(resume_skills, jd_skills):
 
 def final_score(similarity_score, skill_score):
 
-    score = (0.6 * similarity_score) + (0.4 * skill_score)
+    # give more importance to skills
+    score = (0.3 * similarity_score) + (0.7 * skill_score)
 
     return score
