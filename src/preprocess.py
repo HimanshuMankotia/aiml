@@ -1,21 +1,21 @@
 import nltk
 import re
 
-# Download required NLTK resources
-nltk.download('punkt')
-nltk.download('punkt_tab')
-nltk.download('stopwords')
+# download required nltk data
+nltk.download("punkt")
+nltk.download("punkt_tab")
+nltk.download("stopwords")
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-stop_words = set(stopwords.words('english'))
+stop_words = set(stopwords.words("english"))
 
 def preprocess_text(text):
 
     text = text.lower()
 
-    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    text = re.sub(r"[^a-zA-Z\s]", "", text)
 
     tokens = word_tokenize(text)
 
