@@ -15,7 +15,7 @@ skills_list = [
 ]
 
 def extract_skills(text):
-    
+
     text = text.lower()
 
     found_skills = []
